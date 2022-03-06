@@ -1,6 +1,6 @@
 <script setup>
 import Nav from "./components/Nav.vue";
-import Index from "./pages/index.vue"
+import Index from "./pages/index.vue";
 </script>
 
 <template>
@@ -9,4 +9,3 @@ import Index from "./pages/index.vue"
     <router-view />
   </div>
 </template>
-
