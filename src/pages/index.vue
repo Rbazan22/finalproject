@@ -7,7 +7,7 @@
     <h2 class="text-6xl tracking-tighter font-extralight">
       Premium Wash and Detailing since 2005!
     </h2>
-    <p>
+    <p class="py-4">
       You'll be delighted to have chosen us,
       <span class="text-blue-500">we guarantee it!</span>
     </p>
@@ -34,7 +34,11 @@
     </h2>
     <p>You can find us here: 521 Magical Rd.</p>
 
-    <h2 class="text-2xl text-center text-blue-800">Contact Us</h2>
+    <h2
+      class="py-4 text-6xl tracking-tighter font-extralight text-center text-blue-800"
+    >
+      Contact Us
+    </h2>
     <ul class="px-4 py-2">
       <ul class="flex">
         <li>Customer Support:</li>

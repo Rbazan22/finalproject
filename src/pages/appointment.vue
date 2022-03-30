@@ -2,7 +2,11 @@
 
 <template>
   <div class="flex flex-col items-center justify-center min-h-screen-nonav">
-    <img src="../assets/appointment.png" alt="Appointment BG" class="w-72" />
+    <img
+      src="../assets/appointment.png"
+      alt="Appointment BG"
+      class="w-72 m-4"
+    />
     <h2 class="text-6xl py-4 tracking-tighter font-extralight">
       Appointment Page
     </h2>
@@ -26,7 +30,6 @@
       </li>
       <li class="py-2">
         <input
-          type="number"
           class="bg-gray-200 px-8 text-center rounded-md"
           placeholder=" Phone #"
         />

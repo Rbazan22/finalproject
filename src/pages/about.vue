@@ -21,7 +21,15 @@
     <p class="px-4 text-center">
       All 4 of us began working minimum wage jobs in order to gather enough
       money to buy a plot of land suitable for our service; a busy part of town,
-      if you will.
+      if you will. Once the plot of land was successfully owned by us, we
+      continued working during that entire summer in order to achieve enough
+      money to start the entire project. Months later, we started the project
+      with flexibility in mind, and wanted to make sure we had a fall-back in
+      case anything went wrong. Sure enough, the building process started taking
+      place and about 9 months later the building was complete; however there
+      was one problem, we were still missing the products! We got to work and
+      used our months of product research to use. Once acquired, we opened for
+      business in 2005!
     </p>
 
     <h2 class="text-6xl tracking-tighter font-extralight py-4">
@@ -31,14 +39,22 @@
     <h1 class="text-center text-lg">Products Plan (2003):</h1>
     <img
       class="w-72"
-      src="https://lineweights.files.wordpress.com/2011/06/car-was.jpg"
+      src="../assets/products.jpg"
       alt="Progress 1 - Products Plan"
     />
 
     <h1 class="text-center text-lg">Floor Plan (2004):</h1>
-    <img class="w-72" src="" alt="Progress 2 - Floor Plan" />
+    <img
+      class="w-72"
+      src="../assets/floorplan.jpg"
+      alt="Progress 2 - Floor Plan"
+    />
 
     <h1 class="text-center text-lg">Finished Product (2005):</h1>
-    <img class="w-72" src="" alt="Progress 3 - Finished Product" />
+    <img
+      class="w-72"
+      src="../assets/finished.jpg"
+      alt="Progress 3 - Finished Product"
+    />
   </div>
 </template>
