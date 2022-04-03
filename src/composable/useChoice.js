@@ -1,15 +1,17 @@
 import { ref } from "vue";
 
-const useChoice = () => {
-  const choice = ref(null);
-  const setChoice = (value) => {
-    choice.value = value;
-  };
+const membershipClick = async () => {
+  const setMember = async () => {
+    const choice = ref(null);
+    const setMember = (value) => {
+      choice.value = value;
+    };
 
-  return {
-    choice,
-    setChoice,
+    return {
+      choice,
+      setMember,
+    };
   };
 };
 
-export default useChoice;
+export default membershipClick;

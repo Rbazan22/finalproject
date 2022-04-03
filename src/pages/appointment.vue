@@ -1,4 +1,26 @@
-<script setup></script>
+<script setup>
+import useTime from "../composable/setTime";
+import useMessage from "../composable/useMessage";
+import router from "../router";
+
+const { time, setTime } = useTime();
+const { message, setMessage } = useMessage();
+
+const goToHome = () => {
+  router.push("/");
+};
+
+if (useTime) {
+  setTime(time.value);
+  if (time) {
+    setMessage("That time is available!");
+  }
+}
+
+const submitClick = async () => {
+  goToHome();
+};
+</script>
 
 <template>
   <div class="flex flex-col items-center justify-center min-h-screen-nonav">
@@ -81,32 +103,39 @@
         />
       </li>
     </ul>
-    <h1 class="text-center text-lg">Available Times of Appointment:</h1>
-    <ul class="flex px-4 p-2">
-      <li class="p-2">
-        <button
+    <h1 class="text-center text-lg">Appoint Time and Check Availability:</h1>
+    <ul class="p-2">
+      <li class="text-center p-2">
+        <input
+          type="time"
+          v-model="time"
           class="bg-gray-200 px-8 hover:bg-gray-400 text-center rounded-md"
-        >
-          2:00 PM
-        </button>
+        />
       </li>
-      <li class="p-2">
-        <button
-          class="bg-gray-200 px-8 hover:bg-gray-400 text-center rounded-md"
+      <li class="text-center">
+        <div
+          v-if="time"
+          class="w=1/3 p-4 bg-green-300 text-center rounded-lg text-green-800 bottom-2 right-2"
         >
-          4:00 PM
-        </button>
-      </li>
-      <li class="p-2">
-        <button
-          class="bg-gray-200 px-8 hover:bg-gray-400 text-center rounded-md"
+          {{ message }}
+        </div>
+        <div
+          v-else
+          class="w=1/3 p-4 bg-red-300 text-center rounded-lg text-red-800 bottom-2 right-2"
         >
-          6:00 PM
-        </button>
+          Hmm, that time doesn't seem right... Try adding a time.
+        </div>
+        <form @submit.prevent="submitClick">
+          <button
+            v-if="time"
+            type="submit"
+            @submit.prevent="submitClick"
+            class="hover:bg-green-500 text-center w=1/3 p-4 bg-green-300 text-center rounded-lg text-green-800 bottom-2 right-2 m-2"
+          >
+            Submit
+          </button>
+        </form>
       </li>
     </ul>
-    <button class="bg-green-400 p-2 px-6 hover:bg-green-600 rounded-lg">
-      Submit
-    </button>
   </div>
 </template>

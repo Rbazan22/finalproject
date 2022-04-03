@@ -9,7 +9,7 @@ import { useTimeout, promiseTimeout } from "@vueuse/core";
 
 const schema = yup.object({
   username: yup.string().required().email().label("Email"),
-  password: yup.string().required().min(8).label("Password"),
+  password: yup.string().required().min(7).label("Password"),
 });
 
 useForm({
