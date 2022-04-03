@@ -1,4 +1,15 @@
-<script setup></script>
+<script setup>
+import useChoice from "../composable/useChoice";
+import { useTimeout, promiseTimeout } from "@vueuse/core";
+
+const { choice, setChoice } = useChoice();
+const { ready, start } = useTimeout(5000, { controls: true });
+
+if (useChoice) {
+  setChoice("Good Choice!");
+  start();
+}
+</script>
 
 <template>
   <div class="flex flex-col items-center justify-center min-h-screen-nonav">
@@ -11,12 +22,22 @@
       class="max-w-screen-sm"
     />
     <p class="m-4">
-      Below you are give the option to choose from our 3 amazing memberships:
+      Below you are given the option to choose from our 3 amazing memberships:
     </p>
+
+    <div class="py-8">
+      <div
+        v-if="!ready && choice"
+        class="w=1/3 p-4 bg-green-300 text-center rounded-lg text-green-800 bottom-2 right-2"
+      >
+        {{ choice }}
+      </div>
+    </div>
 
     <ul class="py-8 bg-blue-300">
       <li class="flex">
         <button
+          @click="useChoice"
           class="px-14 py-14 mx-4 bg-blue-500 hover:bg-blue-700 rounded-lg overflow-hidden"
         >
           <ul>
@@ -30,6 +51,7 @@
         </button>
 
         <button
+          @click="useChoice"
           class="px-14 py-14 mx-4 bg-blue-500 hover:bg-blue-700 rounded-lg overflow-hidden"
         >
           <ul>
@@ -45,6 +67,7 @@
         </button>
 
         <button
+          @click="useChoice"
           class="px-14 py-14 mx-4 bg-blue-500 hover:bg-blue-700 rounded-lg overflow-hidden"
         >
           <ul>

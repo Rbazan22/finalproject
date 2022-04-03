@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+import Authorize from "../composable/Authorize";
+const { hasAuthenticated, user } = Authorize();
+</script>
 
 <template>
   <div class="flex flex-col items-center justify-center min-h-screen-nonav">
@@ -7,6 +10,13 @@
     <h2 class="text-6xl tracking-tighter font-extralight">
       Premium Wash and Detailing since 2005!
     </h2>
+
+    <p v-if="user" class="text-4xl tracking-tighter font-extralight py-4">
+      Welcome
+      <span class="text-blue-500">{{ user }}</span
+      >! Enjoy your stay
+    </p>
+
     <p class="py-4">
       You'll be delighted to have chosen us,
       <span class="text-blue-500">we guarantee it!</span>
@@ -28,6 +38,18 @@
       <li>$10 - Incredible Detailing + Tire Shine</li>
       <li>$15 - Top of the Line Detailing + Polish + Tire Shine</li>
     </ul>
+
+    <div v-if="user">
+      <ul class="py-4">
+        <h1 class="text-center text-lg">Members-Only Options:</h1>
+        <li>$25 - Fantastic Wash + Foam + Tire Shine</li>
+        <li>$30 - Incredible Wash + Foam + Tire Shine + Vacuum + Hand Dry</li>
+        <li>
+          $35 (truck) / $25 (car) - Top of the Line Package (Everything
+          included)
+        </li>
+      </ul>
+    </div>
 
     <h2 class="text-6xl tracking-tighter font-extralight py-4">
       Where to locate us
