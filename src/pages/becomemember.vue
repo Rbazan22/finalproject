@@ -3,6 +3,10 @@ import useTime from "../composable/setTime";
 import useMessage from "../composable/useMessage";
 import router from "../router";
 
+import { onUnmounted, ref } from "vue";
+import useChat from "../composable/useChat";
+import useAuth from "../composable/Authorize";
+
 import { useTimeout, promiseTimeout } from "@vueuse/core";
 
 const { time, setTime } = useTime();
@@ -24,6 +28,19 @@ const memberClick = async () => {
     }
   }
 };
+
+const { messages, unsubscribe, sendMessage } = useChat();
+const { user } = useAuth();
+
+const newMessage = ref("Welcome to the wash family!");
+
+const send = () => {
+  sendMessage(newMessage.value);
+};
+
+onUnmounted(() => {
+  unsubscribe();
+});
 </script>
 
 <template>
@@ -63,6 +80,7 @@ const memberClick = async () => {
           <button
             type="submit"
             @submit.prevent="memberClick"
+            @click="send"
             class="px-14 py-14 mx-4 bg-blue-500 hover:bg-blue-700 rounded-lg overflow-hidden"
           >
             <ul>
@@ -78,6 +96,7 @@ const memberClick = async () => {
           <button
             type="submit"
             @submit.prevent="memberClick"
+            @click="send"
             class="px-14 py-14 mx-4 bg-blue-500 hover:bg-blue-700 rounded-lg overflow-hidden"
           >
             <ul>
@@ -95,6 +114,7 @@ const memberClick = async () => {
           <button
             type="submit"
             @submit.prevent="memberClick"
+            @click="send"
             class="px-14 py-14 mx-4 bg-blue-500 hover:bg-blue-700 rounded-lg overflow-hidden"
           >
             <ul>
@@ -110,6 +130,22 @@ const memberClick = async () => {
           </button>
         </li>
       </form>
+    </ul>
+  </div>
+
+  <div
+    class="min-h w-full mt-8 rounded-lg shadow-2xl flex flex-col justify-between"
+  >
+    <ul class="p-4 space-y-4">
+      <li v-for="message in messages" :key="message.id">
+        <div
+          class="flex justify-between px-4 py-2 rounded-lg"
+          :class="user === message.author ? 'bg-blue-200' : 'bg-gray-200'"
+        >
+          <span>{{ message.text }}</span
+          ><span>Registered: {{ message.author }}</span>
+        </div>
+      </li>
     </ul>
   </div>
 </template>

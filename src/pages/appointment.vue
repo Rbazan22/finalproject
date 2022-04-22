@@ -130,7 +130,7 @@ const submitClick = async () => {
             v-if="time"
             type="submit"
             @submit.prevent="submitClick"
-            class="hover:bg-green-500 text-center w=1/3 p-4 bg-green-300 text-center rounded-lg text-green-800 bottom-2 right-2 m-2"
+            class="hover:bg-green-500 text-center w=1/3 p-4 bg-green-300 rounded-lg text-green-800 bottom-2 right-2 m-2"
           >
             Submit
           </button>
