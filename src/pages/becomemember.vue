@@ -4,7 +4,7 @@ import useMessage from "../composable/useMessage";
 import router from "../router";
 
 import { onUnmounted, ref } from "vue";
-import useChat from "../composable/useChat";
+import welcomeMessage from "../composable/Message";
 import useAuth from "../composable/Authorize";
 
 import { useTimeout, promiseTimeout } from "@vueuse/core";
@@ -13,29 +13,35 @@ const { time, setTime } = useTime();
 const { message, setMessage } = useMessage();
 
 const goToHome = () => {
-  router.push("/");
+  promiseTimeout(5000).then(() => {
+    router.push("/");
+  });
 };
 
-const { ready, start } = useTimeout(2000, { controls: true });
+const { ready, start } = useTimeout(5000, { controls: true });
 
 const memberClick = async () => {
   if (useTime) {
     setTime(time.value);
 
     if (time) {
-      setMessage("Excellent Choice!");
+      setMessage("Excellent Choice! Redirecting back to Homepage in 5 seconds");
       start();
     }
   }
 };
 
-const { messages, unsubscribe, sendMessage } = useChat();
+const { messages, unsubscribe, sendMessage } = welcomeMessage();
 const { user } = useAuth();
 
 const newMessage = ref("Welcome to the wash family!");
 
 const send = () => {
   sendMessage(newMessage.value);
+
+  if (send) {
+    goToHome();
+  }
 };
 
 onUnmounted(() => {
@@ -58,19 +64,19 @@ onUnmounted(() => {
     </p>
 
     <div class="py-8">
-      <div
-        class="w=1/3 p-4 bg-green-300 text-center rounded-lg text-green-800 bottom-2 right-2"
-      >
-        <router-link :to="{ name: 'Index' }">
-          <p v-if="!ready && memberClick">{{ message }}</p>
-
-          <button
-            v-else
-            class="w=1/3 p-4 bg-blue-300 text-center rounded-lg text-blue-800 bottom-2 right-2 hover:bg-blue-500"
-          >
-            Redirect back to Homepage
-          </button>
-        </router-link>
+      <div>
+        <p
+          v-if="!ready && memberClick"
+          class="w=1/3 p-4 bg-green-300 text-center rounded-lg text-green-800 bottom-2 right-2"
+        >
+          {{ message }}
+        </p>
+        <p
+          v-else
+          class="w=1/3 p-4 bg-blue-400 text-center rounded-lg text-blue-800 bottom-2 right-2"
+        >
+          Select an option
+        </p>
       </div>
     </div>
 
@@ -134,13 +140,13 @@ onUnmounted(() => {
   </div>
 
   <div
-    class="min-h w-full mt-8 rounded-lg shadow-2xl flex flex-col justify-between"
+    class="min-h w-full mt-8 rounded-lg shadow-2xl flex flex-col justify-between bg-gray-100"
   >
     <ul class="p-4 space-y-4">
       <li v-for="message in messages" :key="message.id">
         <div
           class="flex justify-between px-4 py-2 rounded-lg"
-          :class="user === message.author ? 'bg-blue-200' : 'bg-gray-200'"
+          :class="user === message.author ? 'bg-blue-300' : 'bg-gray-300'"
         >
           <span>{{ message.text }}</span
           ><span>Registered: {{ message.author }}</span>

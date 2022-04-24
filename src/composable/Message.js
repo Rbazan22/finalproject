@@ -14,7 +14,7 @@ const { user } = useAuth();
 
 const messages = ref([]);
 
-const useChat = () => {
+const welcomeMessage = () => {
   const chatCollection = collection(db, "memberships");
 
   const chatQuery = query(chatCollection, orderBy("createdAt", "desc"));
@@ -37,4 +37,4 @@ const useChat = () => {
   return { messages, unsubscribe, sendMessage };
 };
 
-export default useChat;
+export default welcomeMessage;
